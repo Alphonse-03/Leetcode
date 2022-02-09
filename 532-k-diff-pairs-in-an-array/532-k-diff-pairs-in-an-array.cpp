@@ -2,7 +2,7 @@ class Solution {
 public:
     int findPairs(vector<int>& nums, int k) {
         set<vector<int>> st;
-        map<int,int> mp;
+        unordered_map<int,int> mp;
         for(auto& i:nums)
         {
             if(mp.find(i+k)!=mp.end())
