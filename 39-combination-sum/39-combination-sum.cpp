@@ -1,52 +1,37 @@
 class Solution {
 public:
     
-    void helper(vector<int>& nums,int t,int i,int curr,set<vector<int>>& ans,vector<int>& temp)
+    void helper(vector<int>& nums,int t,int i,vector<int>& temp,vector<vector<int>>& ans)
     {
-        if(curr>t || i>=nums.size())return;
-        if(curr==t)
+        if(t==0)
         {
-            sort(temp.begin(),temp.end());
-            ans.insert(temp);
-            return ;
+            ans.push_back(temp);
+            return;
         }
-        if(curr+nums[i]<=t)
+        if(t<0 || i>nums.size()-1)return;
+        for(int j=i;j<nums.size();j++)
         {
-          //  helper(nums,t,i+1,curr,ans,temp);
-            temp.push_back(nums[i]);
-            helper(nums,t,i+1,curr+nums[i],ans,temp);
-            
-            helper(nums,t,i,curr+nums[i],ans,temp);
-            temp.pop_back();
-            helper(nums,t,i+1,curr,ans,temp);
-           
-            
-        }
-        else
-        {
-            helper(nums,t,i+1,curr,ans,temp);
+            if(nums[j]<=t)
+            {
+                temp.push_back(nums[j]);
+                helper(nums,t-nums[j],j,temp,ans);
+               // helper(nums,t-nums[j],j+1,temp,ans);
+                temp.pop_back();
+            }
+         //   helper(nums,t,j+1,temp,ans);
         }
         
-        // temp.push_back(nums[i]);
-        // helper(nums,t,i,curr+nums[i],ans,temp);
-        // temp.pop_back();
-        // helper(nums,t,i+1,curr,ans,temp);
     }
     
     
     
     
+    
     vector<vector<int>> combinationSum(vector<int>& nums, int t) {
-        sort(nums.begin(),nums.end());
         vector<vector<int>> ans;
-        set<vector<int>> st;
         vector<int> temp;
-        helper(nums,t,0,0,st,temp);
-        for(auto &i:st)
-        {
-            ans.push_back(i);
-        }
+        sort(nums.begin(),nums.end());
+        helper(nums,t,0,temp,ans);
         return ans;
-      
     }
 };
