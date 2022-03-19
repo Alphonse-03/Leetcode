@@ -10,7 +10,7 @@ public:
         if(dp[p]!=-1)return dp[p];
         for(int i=1;i<=nums[p];i++)
         {
-            if(p+i<nums.size())ans=min(ans,helper(nums,p+i));
+            ans=min(ans,helper(nums,p+i));
         }
         return dp[p]=1+ans;
     }
