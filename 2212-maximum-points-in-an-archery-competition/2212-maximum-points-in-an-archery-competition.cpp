@@ -4,7 +4,7 @@ public:
     int mx=0;
     void helper(int n,vector<int>& ali,int pt,vector<int>& ans,int curr)
     {
-        if (curr==-1 || n <= 0)
+        if (curr==-1 || n == 0)
         {
             if(pt>mx)
             {
