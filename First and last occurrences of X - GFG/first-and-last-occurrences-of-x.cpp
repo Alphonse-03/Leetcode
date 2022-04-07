@@ -7,7 +7,6 @@ class Solution {
   public:
     vector<int> firstAndLast(vector<int> &arr, int n, int x) {
         // Code here
-        sort(arr.begin(),arr.end());
         int s=lower_bound(arr.begin(),arr.end(),x)-arr.begin();
         if(s>n || arr[s]!=x)return {-1};
         int e=upper_bound(arr.begin(),arr.end(),x)-arr.begin();
