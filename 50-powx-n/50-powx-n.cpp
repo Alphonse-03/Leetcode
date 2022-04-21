@@ -9,7 +9,7 @@ public:
     }
     double myPow(double x, int n) {
         double ans= helper(x,n);
-        if(n<0)return 1/ans;
-        return ans;
+        return (n<0)? 1/ans:ans;
+       
     }
  };
