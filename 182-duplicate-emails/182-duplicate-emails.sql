@@ -1,4 +1,3 @@
 # Write your MySQL query statement below
-select distinct a.email as Email
-from person as a,person as b
-where a.id<>b.id and a.email=b.email;
+select distinct p1.email as Email from person as p1,person as p2
+where p1.email=p2.email and p1.id <> p2.id;
