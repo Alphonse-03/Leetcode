@@ -9,15 +9,15 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        ListNode* hare,*tort;
-        hare=head;
-        tort=head;
-        while(hare && hare->next)
+        ListNode* hare=head;
+        ListNode* tort=head;
+        while(1)
         {
+            if(!hare || !hare->next)return false;
             hare=hare->next->next;
             tort=tort->next;
             if(hare==tort)return true;
         }
-        return false;
+        return true;
     }
 };
