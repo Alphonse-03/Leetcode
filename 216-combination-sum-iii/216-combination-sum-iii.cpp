@@ -12,10 +12,6 @@ public:
        
         
     }
-    
-    
-    
-    
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>> ans;
         vector<int> t;
