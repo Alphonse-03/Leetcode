@@ -1,7 +1,7 @@
 #define INF 0x3f3f3f3f
 class Solution {
 public:
-    
+    /// i didn't solve the question
     vector < vector <int> > adj, bridges;
     vector <bool> visited; 
     
