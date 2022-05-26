@@ -21,11 +21,11 @@ class Solution {
         // Code here
         vector<int> vis(V,0);
         vector<int> ans;
-        for(int i=0;i<V;i++){
-            if(vis[i]==0){
-                helper(adj,i,ans,vis);
-            }
-        }
+        // for(int i=0;i<V;i++){
+        //     if(vis[i]==0){
+                helper(adj,0,ans,vis);
+         //   }
+      //  }
         
         return ans;
         
