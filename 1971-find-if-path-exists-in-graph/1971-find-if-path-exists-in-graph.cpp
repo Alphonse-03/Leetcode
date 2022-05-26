@@ -1,33 +1,29 @@
 class Solution {
 public:
     
-    bool helper(vector<int> adj[],int s,int d,vector<int>& vis){
-        if(s==d)return true;
-        if(vis[s]==1)return false;
+    bool dfs(vector<vector<int>>& graph, vector<int>& visited, int current, int end) {
+        if(current == end)
+            return true;
+        if(visited[current])
+            return false;
         
-        vis[s]=1;
-        int ans=false;
-        for(auto &j:adj[s]){
-            if(vis[j]==0){
-                ans|=helper(adj,j,d,vis);
-            }
+        visited[current] = 1;
+        
+        for(int i=0; i<graph[current].size(); i++){
+            if(dfs(graph, visited, graph[current][i], end))
+                return true;
         }
-        return ans;
-    
+        
+        return false;
     }
     
-    
-    
-    
-    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
-        
-        vector<int> adj[n];
-        for(auto &i:edges){
-            adj[i[0]].push_back(i[1]);
-            adj[i[1]].push_back(i[0]);
+    bool validPath(int n, vector<vector<int>>& edges, int start, int end) {
+        vector<vector<int>> graph(n);
+        for(int i=0; i<edges.size(); i++) {
+            graph[edges[i][0]].push_back(edges[i][1]);
+            graph[edges[i][1]].push_back(edges[i][0]);
         }
-        vector<int> vis(n,0);
-        
-        return helper(adj,source,destination,vis);
+        vector<int> visited(n, 0);
+        return dfs(graph, visited, start, end);
     }
 };
