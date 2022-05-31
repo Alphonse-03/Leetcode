@@ -6,14 +6,15 @@ class unionFind{
     unionFind(int n):groupCount(n){
         rank=vector<int>(n);
         parent=vector<int>(n);
+        iota(parent.begin(), parent.end(), 0);
     }
     int find(int x){
         if(parent[x]==x)return x;
         return parent[x]=find(parent[x]);
     }
-    void init(int x){
-        parent[x]=x;
-    }
+    // void init(int x){
+    //     parent[x]=x;
+    // }
     void unify(int x,int y){
         int parent_x=find(x);
         int parent_y=find(y);
@@ -39,7 +40,7 @@ public:
         unordered_map<string,int> mp;
         
         for(int i=0;i<size;i++){
-            uf.init(i);
+         //   uf.init(i);
             auto acc=accounts[i];
             for(int j=1;j<acc.size();j++){
                 if(mp.find(acc[j])==mp.end()){
