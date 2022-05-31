@@ -12,9 +12,6 @@ class unionFind{
         if(parent[x]==x)return x;
         return parent[x]=find(parent[x]);
     }
-    // void init(int x){
-    //     parent[x]=x;
-    // }
     void unify(int x,int y){
         int parent_x=find(x);
         int parent_y=find(y);
@@ -40,7 +37,6 @@ public:
         unordered_map<string,int> mp;
         
         for(int i=0;i<size;i++){
-         //   uf.init(i);
             auto acc=accounts[i];
             for(int j=1;j<acc.size();j++){
                 if(mp.find(acc[j])==mp.end()){
@@ -61,7 +57,7 @@ public:
         for(auto &it:mp){
             int par=uf.find(it.second);
             auto iter=ids.find(par);
-            if(ids.find(par)==ids.end()){
+            if(iter==ids.end()){
                 ans[nextId].push_back(accounts[par][0]);
                 ans[nextId].push_back(it.first);
                 ids[par]=nextId;
