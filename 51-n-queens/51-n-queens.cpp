@@ -1,69 +1,57 @@
 class Solution {
 public:
-    
     vector<vector<string>> ans;
-    bool safe(vector<string>& vec,int r,int c){
-        int n=vec.size();
+    bool isSafe(int r,int c,vector<string>& grid){
         for(int i=r-1;i>=0;i--){
-            if(vec[i][c]=='Q')return false;
+            if(grid[i][c]=='Q')return false;
         }
         
-        int x=r-1,y=c-1;
+        int x=r-1;
+        int y=c-1;
         while(x>=0 && y>=0){
-            if(vec[x][y]=='Q')return false;
+            if(grid[x][y]=='Q')return false;
             x--;
             y--;
         }
+        
         x=r-1;
         y=c+1;
-        while(x>=0 && y<n){
-            if(vec[x][y]=='Q')return false;
+        while(x>=0 && y<grid.size()){
+            if(grid[x][y]=='Q')return false;
             x--;
             y++;
         }
+        
+        
+        
+        
         return true;
     }
-     void helper(vector<string>& temp,int r){
-        if(r==temp.size()){
-            ans.push_back(temp);
-            return;
-        }
-        for(int i=0;i<temp.size();i++){
-            if(safe(temp,r,i))
-            {   
-                temp[r][i]='Q';
-                helper(temp,r+1);
-                temp[r][i]='.';
+    
+    
+    
+    void helper(vector<string>& grid,int row){
+        if(row==grid.size()){ans.push_back(grid); return ;}
+        
+        for(int i=0;i<grid.size();i++){
+            if(isSafe(row,i,grid)){
+                grid[row][i]='Q';
+                helper(grid,row+1);
+                grid[row][i]='.';
             }
         }
-       
+        
     }
     
     
-  
-  
     
-
-    
-   
-    
-    
-    
-     vector<vector<string>> solveNQueens(int n) {
-        vector<string> temp(n,string(n,'.'));
-        helper(temp,0);
+    vector<vector<string>> solveNQueens(int n) {
+        vector<string> grid(n,string(n,'.'));
+        
+        helper(grid,0);
+        
         return ans;
+        
+        
     }
-    
-    
-    
-     
-    
-    
 };
-
-
-
-
-
-
