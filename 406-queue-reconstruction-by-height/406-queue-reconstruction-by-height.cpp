@@ -8,20 +8,20 @@ public:
         });
       
         for(auto &i:vec){
-            int dem=i[1];  
-            int j=0;
-            while(dem-- && j<ans.size()){
-               // if(ans[j][0]>=i[0])dem--;
-                j++;
+//             int dem=i[1];  
+//             int j=0;
+//             while(dem-- && j<ans.size()){
+//                // if(ans[j][0]>=i[0])dem--;
+//                 j++;
             
-            } 
-            if(ans.size()==0){
-                ans.push_back(i);
-            }
-            else{
+//             } 
+//             if(ans.size()==0){
+//                 ans.push_back(i);
+//             }
+//             else{
              
-                ans.insert(ans.begin()+j,i);
-            }
+                ans.insert(ans.begin()+i[1],i);
+           // }
             
         }
         
