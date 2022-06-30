@@ -26,11 +26,6 @@ public:
         while(mi<=mx){
             int left,right=INT_MAX;
             int mid=mi+(mx-mi)/2;
-            // if(mid!=low)
-            //     left = diff(nums,mid-1);
-            // if(mid!=high)
-            //     right = diff(nums,mid+1);
-          
             left=diff(nums,mid-1);
             right=diff(nums,mid+1);
             int cen=diff(nums,mid);
