@@ -1,37 +1,29 @@
 class RangeFreqQuery {
 public:
-     unordered_map<int,vector<int>> mp;
-    // RangeFreqQuery(vector<int>& arr) {
-    //     for(int i=0;i<arr.size();i++){
-    //         mp[arr[i]].push_back(i);
-    //     }
-    // }
-    vector<int> nums;
+ unordered_map<int,vector<int>> mp;
     RangeFreqQuery(vector<int>& arr) {
-        for(int i=0;i<arr.size();i++)
-        {
-            nums.push_back(arr[i]);
-            
-        }
-        for(int i=0;i<nums.size();i++)
-        {
+        for(int i=0;i<arr.size();i++){
             mp[arr[i]].push_back(i);
         }
-        
     }
+//     vector<int> nums;
+//     RangeFreqQuery(vector<int>& arr) {
+//         for(int i=0;i<arr.size();i++)
+//         {
+//             nums.push_back(arr[i]);
+            
+//         }
+//         for(int i=0;i<nums.size();i++)
+//         {
+//             mp[arr[i]].push_back(i);
+//         }
+        
+//     }
     
-    int query(int left, int right, int element) {
-   int a = lower_bound(mp[element].begin(),
-                        mp[element].end(),
-                        left)
-            - mp[element].begin();
- 
-    int b = upper_bound(mp[element].begin(),
-                        mp[element].end(),
-                        right)
-            - mp[element].begin();
- 
-    return b-a;
+    int query(int left, int right, int value) {
+        int st=lower_bound(mp[value].begin(),mp[value].end(),left)-mp[value].begin();
+        int ed=upper_bound(mp[value].begin(),mp[value].end(),right)-mp[value].begin();
+        return ed-st;
     }
 };
 
