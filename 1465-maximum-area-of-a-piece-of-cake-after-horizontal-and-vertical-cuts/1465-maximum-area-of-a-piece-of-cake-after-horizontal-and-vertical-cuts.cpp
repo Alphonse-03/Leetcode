@@ -16,7 +16,7 @@ public:
         for(int i=1;i<ver.size();i++){
             mxd2=max(mxd2,(ver[i]-ver[i-1]));
         }
-        unsigned long long ans=((long long)mxd1*(long long)mxd2)%1000000007;
+        long long ans=((long long)mxd1*(long long)mxd2)%1000000007;
         return ans;
     }
 };
