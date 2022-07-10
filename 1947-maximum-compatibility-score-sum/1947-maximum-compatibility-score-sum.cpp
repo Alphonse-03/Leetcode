@@ -1,34 +1,41 @@
 class Solution {
 public:
-     int cal(int i,int j,vector<vector<int>>& arr1,vector<vector<int>>& arr2){
-        int cnt=0;
-        for(int k=0;k<arr1[0].size();k++){
-            if(arr1[i][k]==arr2[j][k]){
-                cnt++;
-            }
+    
+    int score(vector<int>& a,vector<int>& b){
+        int c=0;
+        for(int i=0;i<a.size();i++){
+            if(a[i]==b[i])c++;
         }
-        return cnt;
+        return c;
     }
     
-    int helper(int i,int m,vector<vector<int>>& arr1,vector<vector<int>>& arr2,vector<bool>& vis){
-        if(i==m){
-            return 0;
-        }
-        int ans = 0;
-        for(int j=0;j<m;j++){
-            if(!vis[j]){
-                vis[j]=1;
-                ans = max(ans,cal(i,j,arr1,arr2) + helper(i+1,m,arr1,arr2,vis));
-                vis[j]=0; // Backtracking
+    
+    int helper(vector<vector<int>>& stu,vector<vector<int>>& men,int i, vector<bool>& vis){
+        if(i==stu.size())return 0;
+        int ans=0;
+        for(int j=0;j<men.size();j++){
+            if(vis[j]==false)
+            {
+                vis[j]=true;
+                ans=max(ans,score(stu[i],men[j])+helper(stu,men,i+1,vis));
+                vis[j]=false;
+              
             }
+            
         }
         return ans;
     }
     
-public:
+    
+    
+    
+    
+    
     int maxCompatibilitySum(vector<vector<int>>& students, vector<vector<int>>& mentors) {
-        int m = students.size();
-        vector<bool> vis(m,0); // To keep track of which mentor is already paired up
-        return helper(0,m,students,mentors,vis);
+      //  set<vector<int>> st;
+        int n=mentors.size();
+        vector<bool> vis(n);
+        return helper(students,mentors,0,vis);
+        
     }
 };
