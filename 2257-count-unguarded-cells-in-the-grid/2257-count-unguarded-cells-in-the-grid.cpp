@@ -1,92 +1,60 @@
 class Solution {
 public:
-    
-    // guard 1
-    // wall 2
-    // vis 3;
-    
-    
+    //1 guard
+    //2 wall;
+    //3 not_safe
     
     int countUnguarded(int m, int n, vector<vector<int>>& guards, vector<vector<int>>& walls) {
-        vector<vector<int>> grid(m,vector<int>(n,0));
-                                 
-//         set<pair<int,int>> w;
-        
-//         for(auto &i:walls){
-//             w.insert({i[0],i[1]});
-//         }
+        vector<vector<int>>grid(m,vector<int>(n));
+        for(auto &i:guards){
+            grid[i[0]][i[1]]=1;
+        }
         for(auto &i:walls){
             grid[i[0]][i[1]]=2;
         }
-               
-          for(auto &i:guards){
-            grid[i[0]][i[1]]=1;
-        }
-                                 
-                                 
-                                 
-                                 
-//         for(int i=0;i<m;i++){
-//             for(int j=0;j<n;j++){
-//                 pair<int,int> p={i,j};
-//                 if(w.find(p)!=w.end())
-//                 {
-//                     grid[i][j]=2;
-//                 }
-//             }
-//         }
-                                 
-        for(auto &it:guards){
-            int x=it[0];
-            int y=it[1];
-            grid[x][y]=1;
-            for(int i=x+1;i<m;i++)
-            {
-                if(grid[i][y]==2 || grid[i][y]==1)break;
-                else grid[i][y]=3;
+        for(auto &i:guards){
+            for(int j=i[0]+1;j<m;j++){
+                if(grid[j][i[1]]==2 || grid[j][i[1]]==1)break;
+                grid[j][i[1]]=3;
             }
-            for(int i=y+1;i<n;i++)
-            {
-                if(grid[x][i]==2 || grid[x][i]==1)break;
-                else grid[x][i]=3;
+            for(int j=i[1]+1;j<n;j++){
+                if(grid[i[0]][j]==2 || grid[i[0]][j]==1)break;
+                grid[i[0]][j]=3;
             }
-            for(int i=x-1;i>=0;i--)
-            {
-                if(grid[i][y]==2 || grid[i][y]==1)break;
-                else grid[i][y]=3;
+            for(int j=i[0]-1;j>=0;j--){
+                if(grid[j][i[1]]==2 || grid[j][i[1]]==1)break;
+                grid[j][i[1]]=3;
             }
-            for(int i=y-1;i>=0;i--)
-            {
-                if(grid[x][i]==2 || grid[x][i]==1)break;
-                else grid[x][i]=3;
+            for(int j=i[1]-1;j>=0;j--){
+                if(grid[i[0]][j]==2 || grid[i[0]][j]==1)break;
+                grid[i[0]][j]=3;
             }
         }
-        
-        int c=0;
+        int ans=0;
         for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++)
-            {
-                if(grid[i][j]==0)c++;
+            for(int j=0;j<n;j++){
+                if(grid[i][j]==0)ans++;
             }
         }
-       
+        return ans;
         
         
-//         for(int i=0;i<m;i++){
-//             for(int j=0;j<n;j++){
-//                 cout<<grid[i][j]<<" ";
-//             }
-//             cout<<endl;
-//         }
-        
-                return c;                  
-                    
     }
 };
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
-                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
