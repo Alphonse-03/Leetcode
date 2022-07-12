@@ -10,18 +10,19 @@
  */
 class Solution {
 public:
-    ListNode* ans=NULL;
-    void helper(ListNode* head,ListNode* temp){
-        if(!head){ans=temp;return;}
-        helper(head->next,head);
-        head->next=temp;
-        
-    }
-    
-    
-    
     ListNode* reverseList(ListNode* head) {
-         helper(head,NULL);
-        return ans;
+        if(!head || !head->next)return head;
+        ListNode* temp1=head;
+        head=head->next;
+       ListNode* temp2=head->next;
+        temp1->next=NULL;
+        while(temp2){  
+            head->next=temp1;
+            temp1=head;
+            head=temp2;
+            temp2=temp2->next;
+        }
+        head->next=temp1;
+        return head;
     }
 };
