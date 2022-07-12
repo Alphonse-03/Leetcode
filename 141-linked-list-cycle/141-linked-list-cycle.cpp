@@ -11,13 +11,11 @@ public:
     bool hasCycle(ListNode *head) {
         ListNode* hare=head;
         ListNode* tort=head;
-        while(1)
-        {
-            if(!hare || !hare->next)return false;
+        while(hare && hare->next){
             hare=hare->next->next;
             tort=tort->next;
             if(hare==tort)return true;
         }
-        return true;
+        return false;
     }
 };
