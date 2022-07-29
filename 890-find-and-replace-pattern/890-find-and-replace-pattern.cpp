@@ -52,7 +52,8 @@ public:
 //     }
       vector<string> findAndReplacePattern(vector<string> &words, string &p) {
         vector<string> res;
-        for (string w : words) if (F(w) == F(p)) res.push_back(w);
+         string t=F(p);
+        for (string& w : words) if (F(w) == t) res.push_back(w);
         return res;
     }
 
