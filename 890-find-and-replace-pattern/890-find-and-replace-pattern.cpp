@@ -50,7 +50,7 @@ public:
 //         }
 //         return ans;
 //     }
-      vector<string> findAndReplacePattern(vector<string> words, string p) {
+      vector<string> findAndReplacePattern(vector<string> &words, string &p) {
         vector<string> res;
         for (string w : words) if (F(w) == F(p)) res.push_back(w);
         return res;
