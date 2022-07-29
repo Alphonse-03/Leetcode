@@ -45,10 +45,6 @@ public:
     vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
         vector<string> ans;
         vector<pair<int,int>> m=helper(pattern);
-        // auto back=helper(pattern);
-        // for(auto &i:back){
-        //     cout<<i.first<<" "<<i.second<<endl;
-        // }
         for(auto &i:words){
             if(helper(i)==m)ans.push_back(i);
         }
