@@ -1,21 +1,25 @@
 class Solution {
 public:
-    int solve(string& s,int index,int prev,int &k,vector<vector<int>>& dp){
-        if(index>=s.size())return 0;
-        
-        if(dp[index][prev]!=-1)return dp[index][prev];
-        
-        int inc=0,notinc=0;
-        if(prev==0 || abs(s[index]-prev)<=k){
-            inc=1+solve(s,index+1,s[index],k,dp);
+    //int dp[100000][200];
+    int helper(int i,string &str,int k,char ch,vector<vector<int>>& dp){
+        if(i==str.size())return 0;
+        if(dp[i][ch-'0']!=-1)return dp[i][ch-'0'];
+        if(abs(str[i]-ch)<=k || ch=='0'){
+            return dp[i][ch-'0']=max(1+helper(i+1,str,k,str[i],dp),helper(i+1,str,k,ch,dp));
         }
-        notinc=solve(s,index+1,prev,k,dp);
-        
-        return dp[index][prev]=max(inc,notinc);
+        else{
+            return dp[i][ch-'0']=helper(i+1,str,k,ch,dp);
+        }
     }
     
+    
+    
+    
+    
     int longestIdealString(string s, int k) {
-        vector<vector<int>>dp (s.size()+1,vector<int>(150,-1));
-        return solve(s,0,0,k,dp);
+        int n=s.size();
+        vector<vector<int>> dp(n,vector<int>(100,-1));
+       // memset(dp,-1,sizeof(dp));
+        return helper(0,s,k,'0',dp);
     }
 };
